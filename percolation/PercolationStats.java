@@ -20,7 +20,6 @@ public class PercolationStats {
      thresholds = new double[trials];
 
      for (int t = 0; t < trials; t++) {
-       StdOut.println(t);
        opened = 0;
        Percolation P = new Percolation(n);
        while (! P.percolates()) {

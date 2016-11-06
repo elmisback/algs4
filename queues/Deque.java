@@ -1,52 +1,53 @@
-import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-class Node<Item> {
-  Node<Item> next;
-  Node<Item> prev;
-  Item item;
-
-  public Node(Item i) {
-    next = null;
-    prev = null;
-    item = i;
-  }
-}
-
-class LinkedList<Item> implements Iterator<Item> {
-  int length;
-  Node<Item> front;
-
-  public LinkedList(Node<Item> p, int len) {
-    front = p;
-    length = len;
-  }
-
-  public Item next() {
-    if (length == 0) {
-      throw new NoSuchElementException();
-    }
-    Item i = front.item;
-    front = front.next;
-    length -= 1;
-    return i;
-  }
-
-  public boolean hasNext() {
-    return (length > 0);
-  }
-
-  public void remove() {
-    throw new UnsupportedOperationException();
-  }
-}
 
 public class Deque<Item> implements Iterable<Item> {
-  Node<Item> front;
-  Node<Item> back;
-  int length;
+
+  private class Node<Item> {
+    public Node<Item> next;
+    public Node<Item> prev;
+    public Item item;
+
+    public Node(Item i) {
+      next = null;
+      prev = null;
+      item = i;
+    }
+  }
+
+  private class LinkedList<Item> implements Iterator<Item> {
+    private int length;
+    private Node<Item> front;
+
+    public LinkedList(Node<Item> p, int len) {
+      front = p;
+      length = len;
+    }
+
+    public Item next() {
+      if (length == 0) {
+        throw new NoSuchElementException();
+      }
+      Item i = front.item;
+      front = front.next;
+      length -= 1;
+      return i;
+    }
+
+    public boolean hasNext() {
+      return (length > 0);
+    }
+
+    public void remove() {
+      throw new UnsupportedOperationException();
+    }
+  }
+
+  private Node<Item> front;
+  private Node<Item> back;
+  private int length;
 
   // construct an empty deque
   public Deque() {
@@ -164,7 +165,7 @@ public class Deque<Item> implements Iterable<Item> {
     assert it.next() == "b";
     assert it.next() == "c";
     assert it.hasNext() == false;
-    StdOut.println("passed.");
+    StdOut.println("Deque: passed.");
   }
 
 }
